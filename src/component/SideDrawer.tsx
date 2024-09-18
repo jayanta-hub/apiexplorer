@@ -7,19 +7,39 @@ const ApiList = styled.div`
   top: 0;
   right: 0;
   width: 300px;
-  height: 100%;
+  height: 100vh;
   background-color: #395b74;
   color: white;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   overflow-y: auto;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
   border-left: 2px solid #64d2ff;
+  @media (max-width: 768px) {
+    position: block;
+    width: 95%;
+    border-left: none;
+    overflow-y: scroll;
+  }
 `;
 
 const SelectProvider = styled.h2`
-  margin-top: 0;
+  position: sticky;
+  top: 0;
   font-size: 18px;
-  margin-bottom: 20px;
+  padding: 10px 0 10px 0;
+  background-color: #395b74;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+
+const CloseButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 `;
 
 const ProviderList = styled.ul`
@@ -27,7 +47,7 @@ const ProviderList = styled.ul`
   padding: 0;
   margin: 0;
 `;
-//modified
+
 const ProviderItem = styled.li`
   padding: 10px;
 `;
@@ -46,7 +66,6 @@ const ArrowButton = styled.button`
   cursor: pointer;
 `;
 
-//modified
 const ApiDetailsContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -54,7 +73,7 @@ const ApiDetailsContainer = styled.div`
   height: 100%;
   padding: 10px 0 0 0;
 `;
-//modified
+
 const ApiLogo = styled.img`
   object-fit: contain;
   width: 25px;
@@ -78,18 +97,23 @@ const SideDrawer = ({
   expandedProvider,
   apiDetails,
   handleNavigate,
+  toggleDrawer,
 }: {
   providers: string[];
   handleProviderClick: (provider: string) => void;
   expandedProvider: string | null;
   apiDetails: any;
   handleNavigate: (provider: string, apiDetails: any) => void;
+  toggleDrawer: () => void;
 }) => {
   const apiListRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <ApiList ref={apiListRef}>
-      <SelectProvider>Select Provider</SelectProvider>
+      <SelectProvider>
+        Select Provider
+        <CloseButton onClick={toggleDrawer}>X</CloseButton>
+      </SelectProvider>
       <ProviderList>
         {providers.length > 0 ? (
           providers.map((provider, index) => (

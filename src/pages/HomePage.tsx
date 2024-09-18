@@ -41,8 +41,7 @@ const HomePage: React.FC = () => {
   const [apiDetails, setApiDetails] = useState<ApiDetails>({});
   const apiListRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
+  const handleClick = () => {
     setIsOpen(!isOpen);
   };
 
@@ -113,6 +112,7 @@ const HomePage: React.FC = () => {
             expandedProvider={expandedProvider}
             apiDetails={apiDetails}
             handleNavigate={handleNavigate}
+            toggleDrawer={handleClick}
           />
         )}
       </CenteredContainer>

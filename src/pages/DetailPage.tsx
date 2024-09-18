@@ -4,7 +4,6 @@ import axios from "axios";
 import styled from "styled-components";
 
 // Styled components
-
 const DetailPageContainer = styled.div`
   padding: 40px;
   background-color: #34495e;
@@ -15,6 +14,7 @@ const DetailPageContainer = styled.div`
   justify-content: flex-beween;
   align-items: center;
   box-sizing: border-box;
+  height: 100%;
 `;
 
 const Header = styled.div`
