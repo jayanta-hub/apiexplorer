@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import styled from "styled-components";
 
-//modified
 const ApiList = styled.div`
   position: fixed;
   top: 0;

@@ -6,15 +6,16 @@ import styled from "styled-components";
 // Styled components
 const DetailPageContainer = styled.div`
   padding: 40px;
-  background-color: #34495e;
   color: white;
   margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-beween;
   align-items: center;
-  box-sizing: border-box;
-  height: 100%;
+  background-color: #34495e;
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const Header = styled.div`
@@ -38,12 +39,18 @@ const ContentSection = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  padding: 30px;
 `;
 
 const Section = styled.div`
-  margin-left: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding-left: 80px;
   margin-bottom: 25px;
+  @media (max-width: 768px) {
+    padding-left: 0;
+  }
 `;
 
 const SectionTitle = styled.h3`
@@ -54,10 +61,10 @@ const SectionTitle = styled.h3`
 const Link = styled.a`
   color: #1abc9c;
   text-decoration: none;
-
   &:hover {
     text-decoration: underline;
   }
+  word-break: break-all;
 `;
 
 const Paragraph = styled.p`
@@ -77,6 +84,12 @@ const ExploreButton = styled.button`
   &:hover {
     background-color: #3a9bc3;
   }
+`;
+
+const Danger = styled.div`
+  font-size: 16px;
+  margin: 5px 0;
+  word-break: break-all;
 `;
 
 // Define types for props and state
@@ -143,7 +156,9 @@ function DetailPage() {
         <ContentSection>
           <Section>
             <SectionTitle>Description</SectionTitle>
-            <Paragraph>{apiDetails.info.description}</Paragraph>
+            <Danger
+              dangerouslySetInnerHTML={{ __html: apiDetails.info.description }}
+            />
           </Section>
           <Section>
             <SectionTitle>Swagger</SectionTitle>
